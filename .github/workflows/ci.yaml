@@ -22,7 +22,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: self-hosted
+    runs-on: Linux
     steps:
       - name: Pull image from docker hub
         run: docker pull anthonyrivera/frontend_tenderos:latest
