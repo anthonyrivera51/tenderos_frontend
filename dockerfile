@@ -38,7 +38,7 @@ ENV NEXT_PUBLIC_MESSAGE_EVENT=message.event
 ENV NEXT_PUBLIC_VERSION=11.8.0
 ENV PORT=3002
 
-RUN npm install --production
+RUN npm install
 COPY . .
 RUN npm run build
 EXPOSE 3002
