@@ -36,10 +36,11 @@ ENV NEXT_PUBLIC_VERSION=11.8.0
 ENV PORT=3002
 
 WORKDIR /app
-COPY package*.json yarn.lock ./
+RUN npm install -g next
+
+COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 COPY . .
-RUN rm -rf package-lock.json
 RUN yarn build
 
 FROM node:18-alpine as runner
@@ -50,6 +51,7 @@ COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./next/static
+COPY --from=builder /app/node_modules ./node_modules
 
 EXPOSE 3002
 
