@@ -15,7 +15,7 @@ ENV NEXT_PUBLIC_ENABLE_MULTI_LANG=false
 ENV NEXT_PUBLIC_AVAILABLE_LANGUAGES=en
 
 # API Key for third party service
-NEXT_PUBLIC_GOOGLE_MAP_API_KEY=
+ENV NEXT_PUBLIC_GOOGLE_MAP_API_KEY=
 
 # pusher config
 # 'log', 'pusher', 'null', 'redis'
