@@ -27,6 +27,6 @@ jobs:
       - name: Pull image from docker hub
         run: docker pull anthonyrivera/frontend_tenderos:latest
       - name: Delete old container
-        run: docker rm -f nextjs-app-container  
+        run: docker rm -f nextjs-frontend_tenderos-container  
       - name: Run docker container
-        run: docker run -d -p 3002:3002 --name nextjs-app-container anthonyrivera/frontend_tenderos 
+        run: docker run -d -p 3002:3002 --name nextjs-frontend_tenderos-container anthonyrivera/frontend_tenderos 
