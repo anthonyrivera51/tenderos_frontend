@@ -22,11 +22,11 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: self-hosted
+    runs-on: Linux
     steps:
       - name: Pull image from docker hub
         run: docker pull anthonyrivera/frontend_tenderos:latest
       - name: Delete old container
         run: docker rm -f nextjs-app-container  
       - name: Run docker container
-        run: docker run -d -p 3000:3000 --name nextjs-app-container anthonyrivera/frontend_tenderos 
+        run: docker run -d -p 3002:3002 --name nextjs-app-container anthonyrivera/frontend_tenderos 
