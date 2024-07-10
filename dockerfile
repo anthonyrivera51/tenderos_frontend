@@ -1,7 +1,4 @@
-FROM node:21.7.2-slim as build
-
-WORKDIR /app
-COPY package*.json ./
+FROM node:18-alpine as builder
 
 ENV NEXT_PUBLIC_REST_API_ENDPOINT=http://54.89.207.207:9000/api
 ENV APPLICATION_MODE=production
@@ -38,8 +35,21 @@ ENV NEXT_PUBLIC_MESSAGE_EVENT=message.event
 ENV NEXT_PUBLIC_VERSION=11.8.0
 ENV PORT=3002
 
-RUN yarn
+WORKDIR /app
+COPY package*.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 COPY . .
 RUN yarn build
+
+FROM node:18-alpine as runner
+WORKDIR /app
+COPY --from=builder /app/package.json .
+COPY --from=builder /app/yarn.lock .
+COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./next/static
+
 EXPOSE 3002
+
 CMD [ "yarn","start" ]
