@@ -1,4 +1,5 @@
-FROM node:18-alpine as builder
+
+FROM node:lts-alpine
 
 ENV NEXT_PUBLIC_REST_API_ENDPOINT=http://54.89.207.207:9000/api
 ENV APPLICATION_MODE=production
@@ -35,21 +36,24 @@ ENV NEXT_PUBLIC_MESSAGE_EVENT=message.event
 ENV NEXT_PUBLIC_VERSION=11.8.0
 ENV PORT=3002
 
-WORKDIR /app
-RUN npm install -g next
 
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+# Set the working directory inside the container
+WORKDIR /app
+
+# Install dependencies
+COPY package.json .
+COPY yarn.lock .  
+
+RUN yarn install --production 
+
+# Copy the rest of the application code
 COPY . .
-RUN yarn build
 
-FROM node:18-alpine as runner
-WORKDIR /app
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
+# Build the Next.js application
+RUN yarn build    # or npm run build if you use npm
 
+# Expose the port Next.js runs on
 EXPOSE 3002
 
-CMD [ "yarn","start" ]
+# Run the Next.js application
+CMD ["yarn", "start"]
