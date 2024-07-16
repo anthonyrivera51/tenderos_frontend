@@ -1,7 +1,6 @@
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useTranslation } from 'next-i18next';
 
@@ -39,3 +38,7 @@ const EnterTokenView = ({ onSubmit, loading }: Props) => {
 };
 
 export default EnterTokenView;
+function yupResolver(schema: yup.ObjectSchema<{ token: string; }, yup.AnyObject, { token: undefined; }, "">): import("react-hook-form").Resolver<{ token: string; }, any> | undefined {
+  throw new Error('Function not implemented.');
+}
+

@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Routes } from '@/config/routes';
 import { useTranslation } from 'next-i18next';
-import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import Link from '@/components/ui/link';
 import {
@@ -126,7 +125,7 @@ const RegistrationForm = () => {
             message={t(errorMessage)}
             variant="error"
             closeable={true}
-            className="mt-5"
+            className="mt-5"ya
             onClose={() => setErrorMessage(null)}
           />
         ) : null}
@@ -151,3 +150,7 @@ const RegistrationForm = () => {
 };
 
 export default RegistrationForm;
+function yupResolver(registrationFormSchema: yup.ObjectSchema<{ name: string; email: string; password: string; permission: string; }, yup.AnyObject, { name: undefined; email: undefined; password: undefined; permission: "store_owner"; }, "">): import("react-hook-form").Resolver<{ permission: Permission; }, any> | undefined {
+  throw new Error('Function not implemented.');
+}
+

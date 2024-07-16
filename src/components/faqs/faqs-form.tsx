@@ -16,11 +16,11 @@ import { useMeQuery } from '@/data/user';
 import { FAQs, ItemProps } from '@/types';
 import { getAuthCredentials } from '@/utils/auth-utils';
 import { getErrorMessage } from '@/utils/form-error';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
+import { ObjectSchema, AnyObject } from 'yup';
 
 type FormValues = {
   faq_title: string;
@@ -197,3 +197,7 @@ export default function CreateOrUpdateFaqsForm({ initialValues }: IProps) {
     </form>
   );
 }
+function yupResolver(faqsValidationSchema: ObjectSchema<{ faq_title: string; faq_description: string; }, AnyObject, { faq_title: undefined; faq_description: undefined; }, "">): import("react-hook-form").Resolver<FormValues, any> | undefined {
+  throw new Error('Function not implemented.');
+}
+

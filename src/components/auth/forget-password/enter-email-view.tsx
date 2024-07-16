@@ -1,7 +1,6 @@
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useTranslation } from 'next-i18next';
 
@@ -45,3 +44,7 @@ const EnterEmailView = ({ onSubmit, loading }: Props) => {
 };
 
 export default EnterEmailView;
+function yupResolver(schema: yup.ObjectSchema<{ email: string; }, yup.AnyObject, { email: undefined; }, "">): import("react-hook-form").Resolver<{ email: string; }, any> | undefined {
+  throw new Error('Function not implemented.');
+}
+

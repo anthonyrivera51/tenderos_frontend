@@ -1,7 +1,7 @@
 import Button from '@/components/ui/button';
 import PasswordInput from '@/components/ui/password-input';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+
 import * as yup from 'yup';
 import { useTranslation } from 'next-i18next';
 
@@ -40,3 +40,7 @@ const EnterNewPasswordView = ({ onSubmit, loading }: Props) => {
 };
 
 export default EnterNewPasswordView;
+function yupResolver(schema: yup.ObjectSchema<{ password: string; }, yup.AnyObject, { password: undefined; }, "">): import("react-hook-form").Resolver<{ password: string; }, any> | undefined {
+  throw new Error('Function not implemented.');
+}
+

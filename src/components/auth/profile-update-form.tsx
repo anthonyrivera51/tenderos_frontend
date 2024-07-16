@@ -11,7 +11,6 @@ import pick from 'lodash/pick';
 import SwitchInput from '@/components/ui/switch-input';
 import Label from '@/components/ui/label';
 import { adminOnly, getAuthCredentials, hasAccess } from '@/utils/auth-utils';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { profileValidationSchema } from './profile-validation-schema';
 import PhoneNumberInput from '@/components/ui/phone-input';
 

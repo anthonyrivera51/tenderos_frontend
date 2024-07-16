@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import PasswordInput from '@/components/ui/password-input';
 import { useChangePasswordMutation } from '@/data/user';
 import { useTranslation } from 'next-i18next';
-import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 interface FormValues {
@@ -111,3 +110,7 @@ const ChangePasswordForm = () => {
   );
 };
 export default ChangePasswordForm;
+function yupResolver(changePasswordSchema: yup.ObjectSchema<{ oldPassword: string; newPassword: string; passwordConfirmation: string; }, yup.AnyObject, { oldPassword: undefined; newPassword: undefined; passwordConfirmation: undefined; }, "">): import("react-hook-form").Resolver<FormValues, any> | undefined {
+  throw new Error('Function not implemented.');
+}
+
