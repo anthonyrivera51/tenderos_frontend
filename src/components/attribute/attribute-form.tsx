@@ -14,7 +14,7 @@ import {
   useCreateAttributeMutation,
   useUpdateAttributeMutation,
 } from '@/data/attributes';
-import { yupResolver } from '@hookform/resolvers/yup';
+
 import { attributeValidationSchema } from '@/components/attribute/attribute.validation-schema';
 import StickyFooterPanel from '@/components/ui/sticky-footer-panel';
 

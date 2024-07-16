@@ -2,12 +2,12 @@
 
 const { i18n } = require('./next-i18next.config');
 
-// const runtimeCaching = require('next-pwa/cache');
-// const withPWA = require('next-pwa')({
-//   disable: process.env.NODE_ENV === 'development',
-//   dest: 'public',
-//   runtimeCaching,
-// });
+const runtimeCaching = require('next-pwa/cache');
+const withPWA = require('next-pwa')({
+  disable: process.env.NODE_ENV === 'development',
+  dest: 'public',
+  runtimeCaching,
+});
 
 const nextConfig = {
   reactStrictMode: true,

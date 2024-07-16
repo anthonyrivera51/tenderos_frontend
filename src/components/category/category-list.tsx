@@ -7,7 +7,7 @@ interface Category {
   descripcion: string;
 }
 
-const categoriaList: React.FC = () => {
+const CategoriaList: React.FC = () => {
   const [categorias, setCategorias] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -64,7 +64,9 @@ const categoriaList: React.FC = () => {
                         handleDeleteCategoria(categoria.nombreCategoria)
                       }
                       className="bg-red-500 text-white px-4 py-2 rounded-lg"
-                    > Eliminar</button>
+                    >
+                      Eliminar
+                    </button>
                   </td>
                 </tr>
               );
@@ -76,4 +78,4 @@ const categoriaList: React.FC = () => {
   );
 };
 
-export default categoriaList;
+export default CategoriaList;
