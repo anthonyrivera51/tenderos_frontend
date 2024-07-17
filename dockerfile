@@ -1,4 +1,5 @@
-# Use an official Node.js LTS (Long Term Support) image as base
+# Set the working directory inside the container
+# Stage 1: Build the Next.js application
 FROM node:lts-alpine as build
 
 ENV NEXT_PUBLIC_REST_API_ENDPOINT=http://54.89.207.207:9000/api
@@ -36,12 +37,13 @@ ENV NEXT_PUBLIC_MESSAGE_EVENT=message.event
 ENV NEXT_PUBLIC_VERSION=11.8.0
 ENV PORT=3002
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Install dependencies
+# Copy package.json and yarn.lock (or package-lock.json if using npm)
 COPY package.json .
 COPY yarn.lock .
+
+# Install dependencies
 RUN yarn install --frozen-lockfile
 
 # Copy the rest of the application code
@@ -50,21 +52,21 @@ COPY . .
 # Build the Next.js application
 RUN yarn build
 
-# Stage 2: Serve the production build with a small, efficient Node.js server
+# Stage 2: Serve the production build with a minimal Node.js server
 FROM node:lts-alpine
 
 WORKDIR /app
 
-# Install only production dependencies
+# Copy only necessary files from the build stage
 COPY package.json .
 COPY yarn.lock .
-RUN yarn install --frozen-lockfile --production
-
-# Copy the build output from the previous stage
 COPY --from=build /app/.next ./.next
 
-# Expose the port Next.js runs on
-EXPOSE 3002
+# Install only production dependencies
+RUN yarn install --frozen-lockfile --production
 
-# Run the Next.js application
+# Expose the port Next.js runs on (default: 3000)
+EXPOSE 3000
+
+# Command to run the Next.js application
 CMD ["yarn", "start"]
