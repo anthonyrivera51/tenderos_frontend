@@ -64,7 +64,7 @@ RUN yarn install --frozen-lockfile --production
 COPY --from=build /app/.next ./.next
 
 # Expose the port Next.js runs on
-EXPOSE 3000
+EXPOSE 3002
 
 # Run the Next.js application
 CMD ["yarn", "start"]
