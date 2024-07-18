@@ -50,23 +50,13 @@ RUN yarn install --frozen-lockfile
 COPY . .
 
 # Build the Next.js application
+RUN yarn
+
+# Build the Next.js application
 RUN yarn build
 
-# Stage 2: Serve the production build with a minimal Node.js server
-FROM node:lts-alpine
-
-WORKDIR /app
-
-# Copy only necessary files from the build stage
-COPY package.json .
-COPY yarn.lock .
-COPY --from=build /app/.next ./.next
-
-# Install only production dependencies
-RUN yarn install --frozen-lockfile --production
-
 # Expose the port Next.js runs on (default: 3000)
-EXPOSE 3000
+EXPOSE 3002
 
 # Command to run the Next.js application
 CMD ["yarn", "start"]
