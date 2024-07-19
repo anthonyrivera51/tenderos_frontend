@@ -35,7 +35,7 @@ ENV NEXT_PUBLIC_MESSAGE_EVENT=message.event
 # App version
 
 ENV NEXT_PUBLIC_VERSION=11.8.0
-ENV PORT=3002
+ENV PORT=8080
 
 WORKDIR /app
 
@@ -56,7 +56,7 @@ RUN yarn
 RUN yarn build
 
 # Expose the port Next.js runs on (default: 3000)
-EXPOSE 3002
+EXPOSE 8080
 
 # Command to run the Next.js application
 CMD ["yarn", "start"]
