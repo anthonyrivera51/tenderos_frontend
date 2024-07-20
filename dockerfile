@@ -2,7 +2,7 @@
 # Stage 1: Build the Next.js application
 FROM node:lts-alpine as build
 
-ENV NEXT_PUBLIC_REST_API_ENDPOINT=https://44.211.201.242:9000/api
+ENV NEXT_PUBLIC_REST_API_ENDPOINT=https://tenderos-backend-rest-zhduflfeca-ue.a.run.app
 ENV APPLICATION_MODE=production
 ENV NEXT_PUBLIC_AUTH_TOKEN_KEY=AUTH_CRED
 # Default Language
